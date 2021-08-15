@@ -96,7 +96,6 @@ def map_policy_walk(env, demos, step_size, n_iter, r_max, prior, alpha, gamma, *
         # step 3(c)
         # policy not optimal anymore for new R_tilda => calculate new best policy for this R_tilda, if you change to R_tilda, your policy will change to this new optimal policy too)
         if is_not_optimal(q_pi_r_tilda, pi):
-            #print("HALLO")
             pi_tilda = learn.policy_iteration(env_tilda, gamma, pi)
             #probability of changing R (with accompanying new best policy)
             #env, pi = env_tilda, pi_tilda
@@ -498,41 +497,6 @@ def main(args):
     #run_simulation(6, 4, 'Control', 10)
     #run_simulation(6, 4, 'Control', 30)
 
-
-    #print(demos)
-
-    # run birl
-    # args.dist is the distribution for the priors (given in arguments) and args.r_max is also given in arguments
-    # just gives certain "prior function" behavior (in normal case uniform from -r_max to + r_max)
-    '''
-    prior = prepare_prior(args.dist, args.r_max)
-    sampled_rewards = bayesian_irl(env, demos, step_size=0.05, n_iter=args.n_iter, r_max=args.r_max, prior=prior,
-                                   alpha=args.alpha, gamma=args.gamma, burn_in=args.burn_in, sample_freq=1)
-    x = sampled_rewards
-
-    # plot rewards
-    fig, ax = plt.subplots(1, env.n_states, sharey='all')
-    for i, axes in enumerate(ax.flatten()):
-        axes.hist(sampled_rewards[:, i], range=(-args.r_max, args.r_max))
-    fig.suptitle('Loop Environment {}'.format(args.env_id), )
-
-    #path = '/' + os.path.join(*(os.path.abspath(__file__).split('/')[:-2]), 'results',
-    #                          'samples_env{}.png'.format(args.env_id))
-    path = "C:\\Users\\Matthias\\Documents\\Thesis\\Bayesian\\bayesian_irl-master\\results"
-    plt.savefig(path)
-
-    est_rewards = np.mean(sampled_rewards, axis=0)
-    #print('True rewards: ', env_args['rewards'])
-    #print('Estimated rewards: ', est_rewards)
-
-    # compute optimal q values for estimated rewards
-    env.rewards = est_rewards
-    learner_q_values = learn.compute_q_via_dp(env, gamma=args.gamma)
-    #for print_value in ('expert_q_values', 'learner_q_values'):
-    #    print(print_value + '\n', locals()[print_value])
-    #print('Is a0 optimal action for all states: ', np.all(learner_q_values[:, 0] > learner_q_values[:, 1]))
-    print(learner_q_values[:])
-'''
 
 if __name__ == '__main__':
     args = get_args()
