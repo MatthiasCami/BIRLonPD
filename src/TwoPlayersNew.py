@@ -77,7 +77,6 @@ class TwoPlayerAgent:
     def calculate_trans_probs_real(self, prob_0 = 0.5, prob_1 = 0.5):
         trans_probs_cur = np.zeros(shape=(self.n_states, self.n_actions, self.n_states), dtype=np.float32)
 
-        print("HERE" + str(prob_0) + "    " + str(prob_1))
         for i in range(self.n_states):
             x = '{0:04b}'.format(i)[3]
             # shifts out decisions of expert player
