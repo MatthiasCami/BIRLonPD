@@ -60,7 +60,6 @@ def policy_walk(env, demos, step_size, n_iter, r_max, prior, alpha, gamma, **kwa
             #probability of changing R
             if np.random.random() < compute_ratio(demos, env_tilda, pi, env, pi, prior, alpha, gamma):
                 env = env_tilda
-        yield print("HAHA")
         yield env.rewards
 
 
