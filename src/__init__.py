@@ -1,0 +1,1 @@
+from .twoplayers import Alternate
